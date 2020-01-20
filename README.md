@@ -5,8 +5,8 @@ Clone the repository and create a new *exercises* branch.
 
 Let's start by creating the tables:
 
-* First, familiarise yourself with the [data](##US-President-Database) we're going to use.
-* Then execute the queries in [create_db.sql](https://github.com/Dzvezdana/introduction-to-postgresql/blob/master/queries/create_db.sql). 
+* First, familiarise yourself with the [data](#US-President-Database) we're going to use.
+* Then execute the queries in [create_db.sql](https://github.com/Dzvezdana/introduction-to-postgresql/blob/master/queries/create_dbs.sql). 
 This will create the tables we need.
 * Now lets insert some data into the tables. Execute the queries in [insert_data.sql](https://github.com/Dzvezdana/introduction-to-postgresql/blob/master/queries/insert_data.sql).
 * Finally, you can start working on the [exercises.sql](https://github.com/Dzvezdana/introduction-to-postgresql/blob/master/queries/exercises.sql).
