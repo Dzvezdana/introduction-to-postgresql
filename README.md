@@ -21,9 +21,10 @@ This will create the tables we need.
  If you're **really** stuck you can take a look at the *solutions* branch.
 
 ## US President Database
-In this exercise we will work with the **US Presidents Database**, which contains 7 tables. All information in RDBMs is in 
-the form of tables (relation). All tables are two-dimensional, having a specific number of columns, and a variable 
-number of unordered rows. 
+In this exercise we will work with the **US Presidents Database**, which contains 7 tables. 
+
+**Note**: All information in RDBMs is in the form of tables (relation). All tables are two-dimensional, having a specific 
+number of columns, and a variable number of unordered rows. 
 
 The `PRESIDENTS` table contains the following information:
 
