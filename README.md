@@ -22,7 +22,7 @@ Intellij shortcuts:
 * Execute queries: `Command` + `Enter`.
 * Format queries: `Option` + `Command` + `L`.
 
-##US President Database
+## US President Database
 In this exercise we will work with the **US Presidents Database**, which contains 7 tables. All information in RDBMs is in 
 the form of tables (relation). All tables are two-dimensional, having a specific number of columns, and a variable 
 number of unordered rows. 
