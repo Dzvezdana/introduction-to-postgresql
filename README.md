@@ -1,9 +1,17 @@
 # Introduction to PostgreSQL
 
-This directory contains a set of basic examples for new PostgreSQL users.
-Clone the repository and create a new *exercises* branch. 
+This directory contains a set of basic examples for new PostgreSQL users. It contains 2 parts:
 
-Let's start by creating the tables:
+1. [queries](https://github.com/Dzvezdana/introduction-to-postgresql/blob/master/queries) contains basic SQL exercises.
+2. [python-connection](https://github.com/Dzvezdana/introduction-to-postgresql/blob/master/python-connection) contains
+example how to connect to PostgreSQL and execute queries using Psycopg2.
+
+You can find the documentation here:
+
+* [PostgreSQL](https://www.postgresql.org/docs/9.4/index.html)
+* [Psycopg2](http://initd.org/psycopg/docs/)
+
+Clone the repository and create a new *exercises* branch. Let's start with part one:
 
 * First, familiarise yourself with the [data](#US-President-Database) we're going to use.
 * Then execute the queries in [create_db.sql](https://github.com/Dzvezdana/introduction-to-postgresql/blob/master/queries/create_dbs.sql). 
@@ -11,16 +19,6 @@ This will create the tables we need.
 * Now lets insert some data into the tables. Execute the queries in [insert_data.sql](https://github.com/Dzvezdana/introduction-to-postgresql/blob/master/queries/insert_data.sql).
 * Finally, you can start working on the [exercises.sql](https://github.com/Dzvezdana/introduction-to-postgresql/blob/master/queries/exercises.sql).
  If you're **really** stuck you can take a look at the *solutions* branch.
-
-You can find the documentation here:
-
-* [PostgreSQL](https://www.postgresql.org/docs/9.4/index.html)
-* [Psycopg2](http://initd.org/psycopg/docs/)
-
-Intellij shortcuts:
-
-* Execute queries: `Command` + `Enter`.
-* Format queries: `Option` + `Command` + `L`.
 
 ## US President Database
 In this exercise we will work with the **US Presidents Database**, which contains 7 tables. All information in RDBMs is in 
@@ -73,4 +71,11 @@ The `PRES_MARRIAGE` table contains the following information:
 * `spouse_name`: name before marriage
 * `spouse_age`: age when getting married
 * `nr_children`: number of children
-* `marriage_year`: marriage year
+* `marriage_year`: marriage 
+
+
+#### Useful Intellij shortcuts:
+    
+* Execute queries: `Command` + `Enter`.
+* Format queries: `Option` + `Command` + `L`.
+
