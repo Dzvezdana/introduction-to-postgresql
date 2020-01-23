@@ -13,8 +13,6 @@ CREATE TABLE election (
   PRIMARY KEY (election_year, candidate)
 );
 
-select * from state;
-
 CREATE TABLE president (
   id            SERIAL       NOT NULL,
   name          VARCHAR(100) NOT NULL,
