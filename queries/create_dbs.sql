@@ -1,28 +1,9 @@
-CREATE TABLE admin_vpres (
-  admin_vpres_id SERIAL       NOT NULL UNIQUE,
-  vice_pres_name VARCHAR(100) NOT NULL,
-  PRIMARY KEY (admin_vpres_id, vice_pres_name)
-);
-
-CREATE TABLE administration (
-  id               SERIAL NOT NULL,
-  admin_nr         INT    NOT NULL,
-  pres_id          INT    NOT NULL,
-  year_inaugurated INT    NULL,
-  CONSTRAINT administration_fk FOREIGN KEY (id) REFERENCES admin_vpres (admin_vpres_id),
-  PRIMARY KEY (id)
-);
-
 CREATE TABLE state (
   id           SERIAL       NOT NULL UNIQUE,
   name         VARCHAR(100) NOT NULL,
-  admin_id     INT          NOT NULL REFERENCES administration (id),
   year_entered INT,
   CONSTRAINT bt_year_entered CHECK (((year_entered >= 1600) AND (year_entered <= 2100)))
 );
-
-ALTER TABLE ONLY administration
-  ADD CONSTRAINT check_year_inaug CHECK (((year_inaugurated >= 1600) AND (year_inaugurated <= 2100)));
 
 CREATE TABLE election (
   election_year      INT          NOT NULL,
@@ -66,22 +47,10 @@ CREATE TABLE pres_marriage (
   PRIMARY KEY (pres_id, spouse_name)
 );
 
-
-ALTER TABLE ONLY election
-  ADD CONSTRAINT bt_election_year CHECK (((election_year >= 1600) AND (election_year <= 2100)));
-
 ALTER TABLE ONLY election
   ADD CONSTRAINT above_zero_votes CHECK ((votes > 0));
 
 ALTER TABLE election
   ADD CONSTRAINT winner_loser_opt CHECK (vinner_loser_indic = ANY (ARRAY ['W'::BPCHAR, 'L'::BPCHAR]));
 
-ALTER TABLE pres_marriage
-  ADD CONSTRAINT pres_spouse_age CHECK (NOT (marriage_year < 1800 AND spouse_age <= 21));
-
-ALTER TABLE pres_marriage
-  ADD CONSTRAINT pres_spouse_age CHECK (NOT (marriage_year >= 1800 AND spouse_age < 18));
-
-CREATE INDEX iadmin ON administration USING btree (pres_id, year_inaugurated);
 CREATE INDEX ipres ON president USING btree (party);
-CREATE UNIQUE INDEX iadminnrpresid ON administration (admin_nr, pres_id);

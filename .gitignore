@@ -2,3 +2,4 @@
 .idea/
 *.iml
 local_config.ini
+*~$Postgre*

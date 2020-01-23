@@ -35,23 +35,11 @@ The `PRESIDENTS` table contains the following information:
 * `death_age`: his death age (if applicable)
 * `party`: the party of the president at the time of first inauguration
 * `state_id_born`: the state where the president was born.
-
-The `ADMIN_VPRES` table contains the following information:
-
-* `admin_vpres_id`: primary key
-* `vice_pres_name`: the name of the vice president
-
-The `ADMINISTRATION` table contains the following information:
-
-* `admin_nr`: administration id
-* `pres_id`: president id
-* `year_inaugurated`: year of inauguration
    
 
 The `STATES` table contains the following information:
 
 * `name`: state name
-* `admin_id`: administration id
 * `year_entered`: first year of service
 
 The `ELECTION` table contains the following information:
