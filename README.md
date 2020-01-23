@@ -14,14 +14,14 @@ You can find the documentation here:
 Clone the repository and create a new *exercises* branch. Let's start with part one:
 
 * First, familiarise yourself with the [data](#US-President-Database) we're going to use.
-* Then execute the queries in [create_db.sql](https://github.com/Dzvezdana/introduction-to-postgresql/blob/master/queries/create_dbs.sql). 
+* Then execute the queries in [create_tables.sql](https://github.com/Dzvezdana/introduction-to-postgresql/blob/master/queries/create_tables.sql). 
 This will create the tables we need.
 * Now lets insert some data into the tables. Execute the queries in [insert_data.sql](https://github.com/Dzvezdana/introduction-to-postgresql/blob/master/queries/insert_data.sql).
 * Finally, you can start working on the [exercises.sql](https://github.com/Dzvezdana/introduction-to-postgresql/blob/master/queries/exercises.sql).
  If you're **really** stuck you can take a look at the *solutions* branch.
 
 ## US President Database
-In this exercise we will work with the **US Presidents Database**, which contains 7 tables. 
+In this exercise we will work with the **US Presidents Database**, which contains 5 tables. 
 
 **Note**: All information in RDBMs is in the form of tables (relation). All tables are two-dimensional, having a specific 
 number of columns, and a variable number of unordered rows. 
