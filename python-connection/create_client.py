@@ -1,6 +1,11 @@
 import psycopg2
 import configparser
 
+''' 
+If you get an error "pg_config executable not found" when installing psycopg2, brew 
+install postgresql first.
+'''
+
 
 def create_connection(config):
     try:
