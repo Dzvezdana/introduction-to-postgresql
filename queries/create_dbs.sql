@@ -13,6 +13,8 @@ CREATE TABLE election (
   PRIMARY KEY (election_year, candidate)
 );
 
+select * from state;
+
 CREATE TABLE president (
   id            SERIAL       NOT NULL,
   name          VARCHAR(100) NOT NULL,
@@ -22,10 +24,7 @@ CREATE TABLE president (
   party         VARCHAR(10)  NOT NULL,
   state_id_born INT          NOT NULL REFERENCES state (id),
   CONSTRAINT check_birth_year CHECK (((birth_year >= 1600) AND (birth_year <= 2100))),
-  CONSTRAINT check_death_age CHECK (((death_age > 20) OR (death_age IS NULL))),
   CONSTRAINT check_party CHECK (party = ANY (ARRAY ['DEMOCRATIC'::BPCHAR, 'REPUBLICAN'::BPCHAR, 'WHIG'::BPCHAR,
-    'FEDERALIST'::BPCHAR, 'DEMO-REP'::BPCHAR])),
-  CONSTRAINT check_party_v02 CHECK (birth_year <= 1800 OR party = ANY (ARRAY ['DEMOCRATIC'::BPCHAR, 'REPUBLICAN'::BPCHAR,
     'FEDERALIST'::BPCHAR, 'DEMO-REP'::BPCHAR])),
   PRIMARY KEY (id)
 );
