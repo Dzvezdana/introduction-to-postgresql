@@ -60,62 +60,104 @@ FROM president
 
 -- Exercise 10
 -- Find the average age when presidents got married.
-SELECT president.id                                                                                as president_id,
-       president.name                                                                              as president_name,
-       pres_marriage.marriage_year                                                                 as marriage_year,
-       ((pres_marriage.marriage_year - president.birth_year) /
-        COUNT(pres_marriage.marriage_year))                                                        as average_married_age
-
+SELECT AVG(pres_marriage.marriage_year - president.birth_year) as average_married_age
 FROM president
-         INNER JOIN pres_marriage ON president.id = pres_marriage.pres_id
-
-
+         INNER JOIN pres_marriage ON president.id = pres_marriage.pres_id;
+--31.9607843137254902;
 
 -- Exercise 11
 -- List the names, birth years, and parties of all presidents. Order by parties and presidents' names, both in ascending alphabetical order.
-
+SELECT name, birth_year, party
+FROM president
+ORDER BY party, name ASC;
 
 --Exercise 12
 -- What's the average number of children for marriages after 1930?
-
+SELECT AVG(nr_children)
+FROM pres_marriage
+WHERE marriage_year > 1930;
+--2.5
 
 --Exercise 13
 -- What's the average number of years presidents stayed in office?
-
+SELECT AVG(years_served)
+FROM president;
+--4.9545454545454545
 
 --Exercise 14
 -- What was the minimum amount of votes winning presidents needed to be elected to office between 1800 and 1900?
-
+SELECT MIN(votes)
+FROM election
+WHERE winner_loser = 'W';
+--69
 
 --Exercise 15
 -- What's the total number of votes in 1808?
-
+SELECT SUM(votes)
+FROM election
+WHERE election_year = 1808;
 
 --Exercise 16
 -- How many distinct election years were there between 1900 and 2000?
-
+SELECT COUNT(DISTINCT election_year)
+FROM election;
+--57
 
 --Exercise 17
 -- How many distinct losing candidates were there?
-
+SELECT COUNT(DISTINCT candidate)
+FROM election
+WHERE winner_loser = 'L';
+--85
 
 --Exercise 18
 -- List the names of the candidates who lost more than one time?
 -- List the results sorted by descending number of lose.
+SELECT SUM(A.number_of_loss) AS losses, A.candidate
+from (
+         SELECT COUNT(*) as number_of_loss, B.election_year, B.candidate
+         FROM election B
+         WHERE B.winner_loser = 'L'
+         GROUP BY B.election_year, B.candidate
+     ) A
+GROUP BY 2
+HAVING SUM(A.number_of_loss) > 1 --used only after the table is transformed
+ORDER BY 1 DESC;
 
 
 -- Exercise 19
 -- For each state, count the number of presidents born in that state. List the state name together with this count.
 -- List the results sorted by descending number of presidents.
-
+SELECT COUNT(*) as number_of_presidents_born, state.name
+FROM president
+         INNER JOIN state ON president.state_id_born = state.id
+GROUP BY state.name
+ORDER BY number_of_presidents_born DESC;
 
 -- Exercise 20
 -- What is the rounded average number of children presidents had if their spouse was older than 30?
-
+SELECT round(AVG(nr_children)) FROM pres_marriage WHERE spouse_age > 30;
+--1
 
 -- Exercise 21
 -- Find the presidents that had more than 5 hobbies. Display the president name, and the number of hobbies.
+-- SELECT COUNT(*) as number_of_hobby, name
+-- FROM (
+--          SELECT president.name as name, pres_hobby.hobby as hobby
+--          FROM president
+--                   LEFT JOIN pres_hobby ON president.id = pres_hobby.pres_id
+--
+--      ) as A
+-- GROUP BY name
+-- ORDER BY number_of_hobby DESC;
 
+SELECT *
+FROM (
+         SELECT president.name as name, pres_hobby.hobby as hobby, COUNT(*) as count_id
+         FROM president
+                  INNER JOIN pres_hobby ON president.id = pres_hobby.pres_id
+         GROUP BY name, hobby
+     ) as A;
 
 -- Exercise 22
 -- Find all republican presidents that married after 1900 and had 2 or more children.
