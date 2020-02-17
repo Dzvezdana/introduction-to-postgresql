@@ -62,6 +62,13 @@ The `PRES_MARRIAGE` table contains the following information:
 * `marriage_year`: marriage 
 
 
+#### Python connection exercise
+To run the [python-connection](https://github.com/Dzvezdana/introduction-to-postgresql/blob/master/python-connection) exercise:
+
+* Create and activate a virtual environment;
+* pip3 install psycopg2;
+* Edit the configuration file with your own credentials;
+
 #### Useful Intellij shortcuts:
     
 * Execute queries: `Command` + `Enter`.
