@@ -69,8 +69,9 @@ def create_connection(config):
 def main():
     config = configparser.ConfigParser()
     config.read('./config.ini')
-    create_connection(config)
+    #here you access to your own personal information, log in info via another file
 
+    create_connection(config)
 
 if __name__ == "__main__":
     main()
