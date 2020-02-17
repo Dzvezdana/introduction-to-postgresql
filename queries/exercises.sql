@@ -1,42 +1,74 @@
 -- Exercise 1
 -- How many presidents are there in the list?
-
+SELECT DISTINCT COUNT(name)
+FROM president;
+--44
 
 -- Exercise 2
 -- Take a look at the ELECTION table.
 -- Lets rename the vinner_loser_indic column to winner_loser.
-
+ALTER TABLE election
+    RENAME vinner_loser_indic TO winner_loser;
+--done
 
 -- Exercise 3
 -- Find the names of all alive Democrat presidents who were in office for longer than 5 years.
-
+SELECT name
+FROM president
+WHERE years_served > 5
+  AND death_age IS NULL;
 
 -- Exercise 4
 -- List the PRESIDENTS table, ordered by years served in descending order.
-
+SELECT *
+FROM president
+ORDER BY years_served DESC;
 
 -- Exercise 5
 -- List all available facts in the PRESIDENTS table about the presidents whose last name is HARRISON.
-
+SELECT *
+FROM president
+WHERE name LIKE '%HARRISON%';
 
 -- Exercise 6
 -- List all facts available in the table named PRESIDENTS about presidents who died at an age between 50 and 60 years.
-
+SELECT *
+FROM president
+WHERE death_age BETWEEN 50 AND 60;
 
 -- Exercise 7
 -- List 10 democratic presidents.
-
+SELECT name
+FROM president
+WHERE party LIKE '%DEMOCRATIC%';
 
 -- Exercise 8
 -- Find the president who died the youngest.
-
+SELECT *
+FROM president
+ORDER BY death_age
+LIMIT 1;
 
 -- Exercise 9
 -- List the president name, and his wife's name(s) as well as how old they were when they got married.
-
+SELECT president.id                as president_id,
+       president.name              as president_name,
+       pres_marriage.spouse_name   as spouse_name,
+       pres_marriage.marriage_year as marriage_year
+FROM president
+         INNER JOIN pres_marriage ON president.id = pres_marriage.pres_id;
 
 -- Exercise 10
 -- Find the average age when presidents got married.
+SELECT president.id                                                                                as president_id,
+       president.name                                                                              as president_name,
+       pres_marriage.marriage_year                                                                 as marriage_year,
+       ((pres_marriage.marriage_year - president.birth_year) /
+        COUNT(pres_marriage.marriage_year))                                                        as average_married_age
+
+FROM president
+         INNER JOIN pres_marriage ON president.id = pres_marriage.pres_id
+
 
 
 -- Exercise 11
