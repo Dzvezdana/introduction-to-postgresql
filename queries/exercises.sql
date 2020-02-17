@@ -165,6 +165,7 @@ HAVING COUNT(pr.hobby) >= 5;
 SELECT *
 FROM pres_marriage;
 
+
 -- Exercise 23
 -- For each state find the average rounded number of votes winning candidates got.
 -- List the state, and the average rounded number of votes.
