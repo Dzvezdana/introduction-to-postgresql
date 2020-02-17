@@ -136,7 +136,9 @@ ORDER BY number_of_presidents_born DESC;
 
 -- Exercise 20
 -- What is the rounded average number of children presidents had if their spouse was older than 30?
-SELECT round(AVG(nr_children)) FROM pres_marriage WHERE spouse_age > 30;
+SELECT round(AVG(nr_children))
+FROM pres_marriage
+WHERE spouse_age > 30;
 --1
 
 -- Exercise 21
@@ -151,13 +153,14 @@ SELECT round(AVG(nr_children)) FROM pres_marriage WHERE spouse_age > 30;
 -- GROUP BY name
 -- ORDER BY number_of_hobby DESC;
 
-SELECT *
-FROM (
-         SELECT president.name as name, pres_hobby.hobby as hobby, COUNT(*) as count_id
-         FROM president
-                  INNER JOIN pres_hobby ON president.id = pres_hobby.pres_id
-         GROUP BY name, hobby
-     ) as A;
+
+SELECT president.name  as name,
+       COUNT(pr.hobby) as hobby
+FROM president
+         INNER JOIN pres_hobby pr ON president.id = pr.pres_id
+GROUP BY name
+HAVING COUNT(pr.hobby) >= 5;
+
 
 -- Exercise 22
 -- Find all republican presidents that married after 1900 and had 2 or more children.
