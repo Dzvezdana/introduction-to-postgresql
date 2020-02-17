@@ -113,16 +113,25 @@ WHERE winner_loser = 'L';
 --Exercise 18
 -- List the names of the candidates who lost more than one time?
 -- List the results sorted by descending number of lose.
-SELECT SUM(A.number_of_loss) AS losses, A.candidate
-from (
-         SELECT COUNT(*) as number_of_loss, B.election_year, B.candidate
-         FROM election B
-         WHERE B.winner_loser = 'L'
-         GROUP BY B.election_year, B.candidate
-     ) A
-GROUP BY 2
-HAVING SUM(A.number_of_loss) > 1 --used only after the table is transformed
-ORDER BY 1 DESC;
+-- SELECT SUM(A.number_of_loss) AS losses, A.candidate
+-- from (
+--          SELECT COUNT(*) as number_of_loss, B.election_year, B.candidate
+--          FROM election B
+--          WHERE B.winner_loser = 'L'
+--          GROUP BY B.election_year, B.candidate --election year is not needed as no repeated rows for elected year and votes
+--      ) A
+-- GROUP BY 2
+-- HAVING SUM(A.number_of_loss) > 1 --used only after the table is transformed
+-- ORDER BY 1 DESC;
+
+SELECT candidate,
+       winner_loser,
+       COUNT(*)
+FROM election
+WHERE winner_loser = 'L'
+GROUP BY candidate, winner_loser
+HAVING COUNT(*) > 1
+ORDER BY 3 DESC;
 
 
 -- Exercise 19
@@ -143,17 +152,6 @@ WHERE spouse_age > 30;
 
 -- Exercise 21
 -- Find the presidents that had more than 5 hobbies. Display the president name, and the number of hobbies.
--- SELECT COUNT(*) as number_of_hobby, name
--- FROM (
---          SELECT president.name as name, pres_hobby.hobby as hobby
---          FROM president
---                   LEFT JOIN pres_hobby ON president.id = pres_hobby.pres_id
---
---      ) as A
--- GROUP BY name
--- ORDER BY number_of_hobby DESC;
-
-
 SELECT president.name  as name,
        COUNT(pr.hobby) as hobby
 FROM president
@@ -161,11 +159,11 @@ FROM president
 GROUP BY name
 HAVING COUNT(pr.hobby) >= 5;
 
-
 -- Exercise 22
 -- Find all republican presidents that married after 1900 and had 2 or more children.
 -- List the president name, his wife's name, and the number of children.
-
+SELECT *
+FROM pres_marriage;
 
 -- Exercise 23
 -- For each state find the average rounded number of votes winning candidates got.
